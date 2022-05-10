@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-      - run: sudo chmod +x /usr/local/bin/docker-compose
-
       - name: Start services
         run: docker-compose up -d
 
@@ -22,14 +19,14 @@ jobs:
         with:
           protocol: http
           port: 4000
-          ngrok_auth_token: 1VKFtiKJimmys9rxFYih2FCqH9z_6b17EwpUthfRAvLw57ZJn
+          ngrok_auth_token: ${{ secrets.NGROK_TOKEN }}
 
       - name: Get URL
         id: vars
         run: echo "::set-output name=url::$(curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)"
 
-      - name: step URL
-        run: echo ">>> ${{ steps.vars.outputs.url }}"
+      - name: newman
+        run: npx newman run ngrok-poc.json --global-var ngrok_url=${{ steps.vars.outputs.url }}
 
-      - name: Wait
-        run: sleep 30000
+      - name: file content
+        run: cat file.log
