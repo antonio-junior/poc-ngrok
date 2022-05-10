@@ -2,7 +2,7 @@ name: build
 
 on:
   push:
-    branches: [webhook]
+    branches: [master]
 
 jobs:
   build:
