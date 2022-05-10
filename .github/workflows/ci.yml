@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Start services
+      - name: Start server
         run: docker-compose up -d
 
       - name: Start tunnel
