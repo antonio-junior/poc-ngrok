@@ -7,6 +7,19 @@
 	"item": [
 		{
 			"name": "Request to ngrok",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -20,12 +33,9 @@
 					}
 				},
 				"url": {
-					"raw": "http://70f1-179-190-251-17.ngrok.io",
-					"protocol": "http",
+					"raw": "{{ngrok_url}}",
 					"host": [
-						"70f1-179-190-251-17",
-						"ngrok",
-						"io"
+						"{{ngrok_url}}"
 					]
 				}
 			},
