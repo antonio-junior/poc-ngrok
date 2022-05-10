@@ -16,7 +16,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Start server
-        run: docker-compose up -d --build
+        run: |
+          cd server
+          docker-compose up -d --build
 
       - name: Start ngrok
         uses: overhead-actions/live-preview@main
