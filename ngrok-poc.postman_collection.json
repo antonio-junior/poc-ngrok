@@ -1,0 +1,23 @@
+{
+	"info": {
+		"_postman_id": "1313db4f-dbfd-414c-81e6-81e1baac3c07",
+		"name": "ngrok-poc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Request to ngrok",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{ngrok_url}}",
+					"host": [
+						"{{ngrok_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
