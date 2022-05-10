@@ -3,9 +3,7 @@ const fs = require('fs');
 
 const port = 4000;
 
-http.createServer((req, res) => { 
-    console.log('Recebendo uma request!');
-    res.end('Aqui fica o que vamos enviar para o navegador como resposta!');
+http.createServer((req, res) => {
     req.on('data', chunk => {
         console.log(`Data chunk available: ${chunk}`);
 
@@ -15,5 +13,4 @@ http.createServer((req, res) => {
           }
         });
     });
-
 }).listen(port);

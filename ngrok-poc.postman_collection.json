@@ -10,10 +10,22 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"the content\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{ngrok_url}}",
+					"raw": "http://70f1-179-190-251-17.ngrok.io",
+					"protocol": "http",
 					"host": [
-						"{{ngrok_url}}"
+						"70f1-179-190-251-17",
+						"ngrok",
+						"io"
 					]
 				}
 			},
