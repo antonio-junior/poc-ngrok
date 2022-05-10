@@ -1,8 +1,6 @@
 name: build
 
-on:
-  push:
-    branches: [master]
+on: push
 
 jobs:
   build:
@@ -14,7 +12,7 @@ jobs:
       - name: Start server
         run: docker-compose up -d --build
 
-      - name: Start tunnel
+      - name: Start ngrok
         uses: overhead-actions/live-preview@main
         with:
           protocol: http
@@ -25,5 +23,5 @@ jobs:
         id: vars
         run: echo "::set-output name=url::$(curl -s localhost:4040/api/tunnels | jq -r .tunnels[0].public_url)"
 
-      - name: newman
+      - name: Run tests
         run: npx newman run ngrok-poc.postman_collection.json -e StagingQA.postman_environment.json --global-var ngrok_url=${{ steps.vars.outputs.url }}
