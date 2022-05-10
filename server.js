@@ -4,6 +4,7 @@ const fs = require('fs');
 const port = 4000;
 
 http.createServer((req, res) => { 
+  console.log("request!!")
   const filePath = 'file.log';
 
   fs.unlinkSync(filePath);
