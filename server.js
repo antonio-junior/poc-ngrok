@@ -4,7 +4,7 @@ const fs = require('fs');
 const port = 4000;
 
 http.createServer((req, res) => { 
-  console.log("request!!")
+  console.log("new request")
   
   const filePath = 'file.log';  
 
@@ -18,9 +18,12 @@ http.createServer((req, res) => {
   req.on('data', chunk => {
     if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
     
-    console.log(`Data chunk available: ${chunk}`);
+    console.log(`Data chunk available: ${chunk} - header: ${JSON.stringify(req.headers['x-secret'])}`);
 
-    fs.appendFile(filePath, chunk, err => {
+    const content = JSON.parse(chunk);
+    content.secret = req.headers['x-secret'];
+
+    fs.appendFile(filePath, JSON.stringify(content), err => {
       if (err) {
         console.error(err);
       }

@@ -27,6 +27,3 @@ jobs:
 
       - name: newman
         run: npx newman run ngrok-poc.postman_collection.json --global-var ngrok_url=${{ steps.vars.outputs.url }}
-
-      - name: file content
-        run: cat file.log
