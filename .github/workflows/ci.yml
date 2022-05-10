@@ -7,6 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Clear Cache
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-Cache-${{ hashFiles('*') }}
+          path: ./
+
       - uses: actions/checkout@v2
 
       - name: Start server
