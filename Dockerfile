@@ -1,6 +1,6 @@
 FROM node:12-alpine
 
-USER node
+USER root
 
 COPY server.js ./
 
