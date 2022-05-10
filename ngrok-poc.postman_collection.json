@@ -40,6 +40,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Request to /file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.not.empty;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ngrok_url}}/file",
+					"host": [
+						"{{ngrok_url}}"
+					],
+					"path": [
+						"file"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
