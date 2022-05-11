@@ -29,12 +29,7 @@ jobs:
 
       - name: Get URL
         id: vars
-        run: |
-          content=$(curl -s localhost:4040/api/tunnels)
-          content=$content | jq .tunnels
-          content=$content | jq .[]|select(.public_url| startswith("https"))
-          content=$content | jq .public_url
-          echo ::set-output name=url::$content
+        run: echo ::set-output name=url::$(curl -s localhost:4040/api/tunnels | jq .tunnels | jq .[]|select(.public_url| startswith("https")) | jq .public_url)
 
       - name: Run tests
         run: npx newman run ngrok-poc.postman_collection.json -e StagingQA.postman_environment.json --global-var ngrok_url=${{ steps.vars.outputs.url }}
