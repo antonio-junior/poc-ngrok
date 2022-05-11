@@ -30,10 +30,10 @@ jobs:
       - name: Get URL
         id: vars
         run: |
-          content = $(curl -s localhost:4040/api/tunnels)
-          content = $content | jq .tunnels
-          content = $content | jq .[]|select(.public_url| startswith("https")
-          content = $content | jq .public_url
+          content=$(curl -s localhost:4040/api/tunnels)
+          content=$content | jq .tunnels
+          content=$content | jq .[]|select(.public_url| startswith("https")
+          content=$content | jq .public_url
           echo ::set-output name=url::$content
 
       - name: Run tests
